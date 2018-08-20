@@ -7,7 +7,7 @@
 %define _topdir             /home/user/rpmbuild
 %define _tmppath            %{_topdir}/TMP
 %define tmp_buildroot       %{_tmppath}/%{name}-%{version}
-%define make_install_prefix /tmp/local
+%define make_install_prefix /usr/local
 
 # disable debuginfo packages
 %define debug_package %{nil}
