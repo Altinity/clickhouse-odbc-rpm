@@ -78,7 +78,7 @@ read -p "Press enter to continue"
 echo "Clean Section"
 read -p "Press enter to continue"
 %{__rm} -rf %{buildroot}
-%{__rm} -rf %(tmp_buildroot)
+%{__rm} -rf %{tmp_buildroot}
 echo "Clean Section Completed"
 read -p "Press enter to continue"
  
