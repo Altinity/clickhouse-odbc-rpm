@@ -93,5 +93,5 @@ read -p "Press enter to continue"
 
 %changelog
 * Tue Aug 21 2018 Vladislav Klimenko
-- Initial version
+- Initial version 2018-08-16
 
