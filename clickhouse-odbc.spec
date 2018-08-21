@@ -1,6 +1,6 @@
  
 %define name	  clickhouse-odbc
-%define version	  20180820
+%define version	  20180816
 %define release	  1
 
 %define _topdir             /home/user/rpmbuild
@@ -61,26 +61,13 @@ cd build
 cmake3 .. -DCMAKE_INSTALL_PREFIX:PATH=%{tmp_buildroot}%{make_install_prefix} -DCMAKE_BUILD_TYPE:STRING=Release
 make -j $(nproc || sysctl -n hw.ncpu || echo 4)
 make install
-
-echo "Make completed."
-read -p "Press enter to continue"
  
 %install
-echo "Install section"
-read -p "Press enter to continue"
-
 cp -r %{tmp_buildroot}/* %{buildroot}/
 
-echo "Install completed"
-read -p "Press enter to continue"
-
 %clean
-echo "Clean Section"
-read -p "Press enter to continue"
 %{__rm} -rf %{buildroot}
 %{__rm} -rf %{tmp_buildroot}
-echo "Clean Section Completed"
-read -p "Press enter to continue"
  
 %post -p /sbin/ldconfig
 
