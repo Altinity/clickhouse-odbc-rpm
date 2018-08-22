@@ -33,13 +33,30 @@ BuildRequires: cmake3
 BuildRequires: devtoolset-7
 BuildRequires: unixODBC-devel
 BuildRequires: libtool-ltdl-devel
+
  
 %description
 ClickHouse is an open-source column-oriented database management
 system that allows generating analytical data reports in real time.
+
  
 %prep
+if [ "${MYSRC}" == "yes" ]; then
+	# Prepare sources 'as is', for example, from 'git clone'
+	# Sources are already expected to be located in BUILD/@CH_NAME_FULL@
+	# and would be used 'as is'. This is the way to go in case you need to modify sources
+	# 1. Do not delete BUILD/@CH_NAME_FULLG@ folder
+	# 2. Do not copy sources .tar.gz from SOURCES, do not unpack .tar.gz archive into BUILD/, 
+	# 3. just cd into BUILD/@CH_NAME_FULL@ - it has to be here
+%setup -D -T -n @CH_NAME_FULL@
+else
+	# Prepare sources from .tar.gz release source file
+	# 1. Delete BUILD/@CCH_NAME_FULL@ folder
+	# 2. copy .tar.gz file from SOURSES to BUILD, unpack .tar.gz file. Important .tar.gz file has to have @CH__NAME_FULL@ folder inside
+	# 3. cd into BUILD/@CH_NAME_FULL@, which is expected to be in .tar.gz file
 %setup -q -n @CH_NAME_FULL@
+fi
+
  
 %build
 # clean build folder
@@ -57,22 +74,28 @@ cd build
 cmake3 .. -DCMAKE_INSTALL_PREFIX:PATH=%{tmp_buildroot}%{make_install_prefix} -DCMAKE_BUILD_TYPE:STRING=Release
 make -j $(nproc || sysctl -n hw.ncpu || echo 4)
 make install
+
  
 %install
 cp -r %{tmp_buildroot}/* %{buildroot}/
+
 
 %clean
 %{__rm} -rf %{buildroot}
 %{__rm} -rf %{tmp_buildroot}
  
+
 %post -p /sbin/ldconfig
+
 
 %postun -p /sbin/ldconfig
  
+
 %files
 # just include the whole directory
 %defattr(-,root,root)
 %{make_install_prefix}
+
 
 %changelog
 * Tue Aug 21 2018 Vladislav Klimenko
