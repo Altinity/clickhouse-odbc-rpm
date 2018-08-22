@@ -1,11 +1,7 @@
  
-%define name	  clickhouse-odbc
-%define version	  20180816
-%define release	  1
-
-%define _topdir             /home/user/rpmbuild
-%define _tmppath            %{_topdir}/TMP
-%define tmp_buildroot       %{_tmppath}/%{name}-%{version}
+%define _topdir             @RPMBUILD_DIR@
+%define _tmppath            @TMP_DIR@
+%define tmp_buildroot       %{_tmppath}/@CH_NAME_FULL@
 %define make_install_prefix /usr/local
 
 # disable debuginfo packages
@@ -16,13 +12,13 @@
 %endif
 
 Summary:   Yandex ClickHouse DBMS ODBC driver
-Name:      %{name}
-Version:   %{version}
-Release:   %{release}
-Source:    %{name}.tar.gz
+Name:      @CH_RPM_PACKAGE_NAME@
+Version:   @CH_RPM_PACKAGE_VERSION@
+Release:   1
+Source:    @CH_NAME_FULL@.tar.gz
 License:   Apache License 2.0
 Group:     Applications/Databases
-BuildRoot: %{_tmppath}/%{name}-%{version}-build
+BuildRoot: %{_tmppath}/@CH_NAME_FULL@-buildroot
 Prefix:    /usr/local
 Vendor:    Yandex
 Packager:  Altinity
@@ -43,7 +39,7 @@ ClickHouse is an open-source column-oriented database management
 system that allows generating analytical data reports in real time.
  
 %prep
-%setup -q -n clickhouse-odbc
+%setup -q -n @CH_NAME_FULL@
  
 %build
 # clean build folder
