@@ -1,6 +1,12 @@
 # clickhouse-odbc-rpm
 RPM build script for clickhouse-odbc
 
+# Ready-to-use RPMs
+In case you'd like to just get ready RPMs look into [this repo](https://packagecloud.io/Altinity/clickhouse)
+
+# Build RPMs
+In most cases just run `./build.sh all`
+
 # ODBC configuration
 ```bash
 vim ~/.odbc.ini:
@@ -18,7 +24,6 @@ Driver =  /usr/local/lib64/odbc/libclickhouseodbc.so
 ```
 
 # Testing
-
 Run
 ```bash
 isql -v ClickHouse
