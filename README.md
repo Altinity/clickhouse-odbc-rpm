@@ -28,4 +28,3 @@ Run
 ```bash
 isql -v ClickHouse
 ```
-
