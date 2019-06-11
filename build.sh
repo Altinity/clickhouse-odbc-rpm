@@ -8,7 +8,7 @@
 # Copyright (C) 2018 Altinity Ltd
 
 # Git version that we package
-CH_VERSION_GIT="${CH_VERSION_GIT:-1.0.0.20190523}"
+CH_VERSION_GIT="${CH_VERSION_GIT:-1.0.0.20190611}"
 
 # Base name of the RPM package
 CH_RPM_PACKAGE_NAME="clickhouse-odbc"
