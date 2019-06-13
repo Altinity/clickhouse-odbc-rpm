@@ -9,9 +9,7 @@ In most cases just run `./build.sh all`
 
 # ODBC configuration
 ```bash
-vim ~/.odbc.ini:
-```
-```ini
+cat << "EOF" > ~/.odbc.ini
 [ClickHouse]
 Driver =  /usr/local/lib64/odbc/libclickhouseodbc.so
 # Optional settings:
@@ -21,6 +19,7 @@ Driver =  /usr/local/lib64/odbc/libclickhouseodbc.so
 #uid = default
 #port = 8123
 #sslmode = require
+EOF
 ```
 
 # Testing
@@ -28,3 +27,4 @@ Run
 ```bash
 isql -v ClickHouse
 ```
+
